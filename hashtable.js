@@ -1,16 +1,31 @@
-const user = {
-  age: 24,
-  name: 'mike',
-  magix: true,
-  scream() {
-    console.log('ahhhhh');
-  },
-};
+class HashTable {
+  constructor(size) {
+    this.data = new Array(size);
+  }
 
-console.log(user.age); // o(1)
+  _hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * i) % this.data.length;
+    }
+    return hash;
+  }
 
-user.spell = 'abra kadabra'; // o(1)
+  set(key, value) {
+    const index = this._hash(key);
+    this.data[index] = {
+      key,
+      value,
+    };
+  }
 
-console.log(user);
+  get(key) {
+    const index = this._hash(key);
+    return this.data[index]['value'];
+  }
+}
 
-user.scream(); // o(1)
+const myHashTable = new HashTable(50);
+myHashTable.set('grapes', 10000);
+
+console.log(myHashTable.get('grapes'));
