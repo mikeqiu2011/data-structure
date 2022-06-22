@@ -41,6 +41,7 @@ class HashTable {
   }
 
   keys() {
+    // keys implementation for hashtable is not as efficient as array
     const result = [];
 
     this.data.forEach((element) => {
