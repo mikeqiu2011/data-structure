@@ -39,6 +39,20 @@ class HashTable {
 
     return result;
   }
+
+  keys() {
+    const result = [];
+
+    this.data.forEach((element) => {
+      if (element) {
+        element.forEach((item) => {
+          result.push(item.key);
+        });
+      }
+    });
+
+    return result;
+  }
 }
 
 const myHashTable = new HashTable(50);
@@ -49,5 +63,4 @@ myHashTable.set('bananas', 10);
 console.log(myHashTable.get('grapes'));
 console.log(myHashTable.data);
 
-// console.log(myHashTable.data);
-// console.log(myHashTable.data[23]);
+console.log(myHashTable.keys());
