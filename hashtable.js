@@ -13,15 +13,27 @@ class HashTable {
 
   set(key, value) {
     const index = this._hash(key);
-    this.data[index] = {
+    if (!this.data[index]) {
+      this.data[index] = [];
+    }
+    this.data[index].push({
       key,
       value,
-    };
+    });
   }
 
   get(key) {
     const index = this._hash(key);
-    return this.data[index]['value'];
+    // console.log(key, index);
+    let result = null;
+    this.data[index].forEach((item) => {
+      //   console.log(item, item.key);
+      if (item.key === 'grapes') {
+        result = item.value;
+      }
+    });
+
+    return result;
   }
 }
 
@@ -29,3 +41,6 @@ const myHashTable = new HashTable(50);
 myHashTable.set('grapes', 10000);
 
 console.log(myHashTable.get('grapes'));
+
+// console.log(myHashTable.data);
+// console.log(myHashTable.data[23]);
