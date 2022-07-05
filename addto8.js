@@ -33,3 +33,20 @@ function existSumEight2(array){
 
 console.log(existSumEight2(arr1));
 console.log(existSumEight2(arr2));
+
+
+
+const arr3 = [1,4,9,5]
+
+function existSumEight3(array){
+    const hashtab = {}
+
+    for (let i = 0; i < array.length; i++) {
+        if(hashtab[array[i]]){
+            return true
+        }
+        hashtab[8 - array[i]] = true       
+    }
+    return false
+}
+console.log(existSumEight3(arr3));
