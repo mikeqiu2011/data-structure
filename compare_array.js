@@ -38,3 +38,10 @@ console.log(result1, result2);
 result3 = containsCommonItem(arr1, null)
 console.log(result3);
 
+
+function containsCommonItem2(arr1, arr2){
+    return arr1.some(item => arr2.includes())
+}
+
+result4 = containsCommonItem2(arr1, arr2)
+console.log(result4);
