@@ -13,5 +13,23 @@ function existSum8(array){
     return false
 }
 
-console.log(existSum8(arr1));
-console.log(existSum8(arr2));
+function existSumEight2(array){
+    let i = 0
+    let j = array.length - 1
+    while(i < j){
+        if(array[i] + array[j] == 8){
+            return true
+        }else if (array[i] + array[j] > 8){
+            j--
+        }else{
+            i++
+        }
+    }
+    return false
+}
+
+// console.log(existSum8(arr1));
+// console.log(existSum8(arr2));
+
+console.log(existSumEight2(arr1));
+console.log(existSumEight2(arr2));
