@@ -36,17 +36,17 @@ console.log(existSumEight2(arr2));
 
 
 
-const arr3 = [1,4,9,5]
+const arr3 = [1,4,9,4]
 
-function existSumEight3(array){
-    const hashtab = {}
+function hasPairWithSum(array, sum){
+    const mySet = new Set()
 
     for (let i = 0; i < array.length; i++) {
-        if(hashtab[array[i]]){
+        if(mySet.has(array[i])){
             return true
         }
-        hashtab[8 - array[i]] = true       
+        mySet.add(sum - array[i])    
     }
     return false
 }
-console.log(existSumEight3(arr3));
+console.log(hasPairWithSum(arr3, 8));
