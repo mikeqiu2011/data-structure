@@ -8,14 +8,11 @@ function exists_common(arr1, arr2){   // o(a*b)
     return false
 }
 
-function containsCommonItem(arr1, arr2){  // o(a+b)
+function containsCommonItem(arr1, arr2){  // o(a+b) of time complexity, but o(a) of space complexity
     if(!arr1 || !arr2){
         return false
     }
-    const hashtab = {}
-    for (let i = 0; i < arr1.length; i++) {
-        hashtab[arr1[i]] = true;        
-    }
+    const hashtab = mapArrayToHashTable(arr1);
 
     for (let i = 0; i < arr2.length; i++) {
         if(hashtab[arr2[i]]){
@@ -38,6 +35,14 @@ console.log(result1, result2);
 result3 = containsCommonItem(arr1, null)
 console.log(result3);
 
+
+function mapArrayToHashTable(arr1) {
+    const hashtab = {};
+    for (let i = 0; i < arr1.length; i++) {
+        hashtab[arr1[i]] = true;
+    }
+    return hashtab;
+}
 
 function containsCommonItem2(arr1, arr2){
     return arr1.some(item => arr2.includes())
