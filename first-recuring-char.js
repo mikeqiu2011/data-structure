@@ -1,5 +1,6 @@
 function getFirstRecurChar(arr) {
-  const hashtable = {};
+  // o(n) time complexity
+  const hashtable = {}; // o(n) space complexity increase
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
