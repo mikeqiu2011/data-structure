@@ -3,9 +3,6 @@ class Node{
         this.value = value
         this.next = next
     }
-    setNext(next){
-        this.next = next
-    }
 }
 
 class Linkedlist{
@@ -26,18 +23,59 @@ class Linkedlist{
 
     prepend(value){
         const newNode = new Node(value)
-        newNode.setNext(this.head)
+        newNode.next = this.head
         this.head = newNode
         this.length++
         return this
+    }
+
+    insert(index, value){
+        if (index >= this.length){
+            return this.append(value)
+        }
+
+        if (index <= 0){
+            return this.prepend(value)
+        }
+
+        const newNode = new Node(value)
+
+        const leader = this.traverseToIndex(index-1)
+        console.log(leader);
+        newNode.next = leader.next
+        leader.next = newNode
+        this.length++
+
+        return this
+    }
+
+    traverseToIndex(index){
+        let currentNode = this.head
+        for (let i = 0; i < index; i++) {
+            currentNode = currentNode.next
+            
+        }
+        return currentNode
+    }
+
+    printList(){
+        const array = []
+        let cursor = this.head
+        while(cursor !== null){
+            // console.log(cursor.value);
+            array.push(cursor.value)
+            cursor = cursor.next
+        }
+        return array
     }
 }
 
 const myLinkedList = new Linkedlist(5)
 myLinkedList.append(10)
 myLinkedList.append(15)
-// myLinkedList.append(20)
 
-myLinkedList.prepend(2)
-myLinkedList.prepend(1)
-console.log(myLinkedList);
+console.log(myLinkedList.printList());
+
+myLinkedList.insert(2, 12)
+console.log(myLinkedList.printList());
+// console.log(myLinkedList);
