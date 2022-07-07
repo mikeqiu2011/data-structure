@@ -74,18 +74,23 @@ class Linkedlist{
 
 
     reverse(){
-        let prev = this.head
-        let cur = prev.next
-        let follower = cur.next
-        while(follower !== null){
-            cur.next = prev
-            let pointer = follower.next
-            follower.next = cur
-            
-            prev = cur
-            cur = follower
-            follower = pointer
+        if(this.length === 1){
+            return this
         }
+
+        let first = this.head
+        this.tail = this.head
+        let second = first.next
+        first.next = null
+        
+        while(second){
+            const temp = second.next
+            second.next = first
+            first = second
+            second = temp
+        }
+        this.head = first
+
         return this
     }
 }
