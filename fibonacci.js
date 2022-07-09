@@ -2,6 +2,7 @@
 
 // given the index, return the corresponding value in the sequence
 function fibonacciRecursive(n) {
+  // O(2^n)
   if (n < 2) {
     return n;
   }
@@ -12,6 +13,7 @@ const result = fibonacciRecursive(8);
 console.log(result);
 
 function fibonacciIterative(n) {
+  // O(n)
   const array = [0, 1];
   for (let i = 2; i <= n; i++) {
     array.push(array[i - 2] + array[i - 1]);
