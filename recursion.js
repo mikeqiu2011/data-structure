@@ -5,7 +5,7 @@ function inception() {
     return 'done';
   }
   counter++;
-  inception;
+  return inception();
 }
 
 const result = inception();
