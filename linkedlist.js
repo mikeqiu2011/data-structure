@@ -79,10 +79,10 @@ class Linkedlist{
         }
 
         let first = this.head
-        this.tail = this.head
         let second = first.next
         first.next = null
-        
+        this.tail = first
+
         while(second){
             const temp = second.next
             second.next = first
