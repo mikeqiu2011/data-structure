@@ -1,8 +1,8 @@
 class Node {
   constructor(value) {
+    this.value = value;
     this.left = null;
     this.right = null;
-    this.value = value;
   }
 }
 
@@ -15,53 +15,57 @@ class BinarySearchTree {
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
-      return;
-    }
-
-    const targetNode = this.findNodeToInsert(value);
-    if (value === targetNode.value) {
-      return 'value already exists';
-    } else if (value < targetNode.value) {
-      targetNode.left = newNode;
     } else {
-      targetNode.right = newNode;
-    }
-  }
-
-  hasChild(node) {
-    return node.left !== null || node.right !== null;
-  }
-
-  findNodeToInsert(value) {
-    let targetNode = this.root;
-    console.log(this.hasChild(targetNode));
-    while (this.hasChild(targetNode)) {
-      if (value < targetNode.value && targetNode.left !== null) {
-        targetNode = targetNode.left;
-      } else if (value > targetNode.value && targetNode.right !== null) {
-        targetNode = targetNode.right;
+      let currentNode = this.root;
+      while (true) {
+        if (value < currentNode.value) {
+          // go left
+          if (!currentNode.left) {
+            currentNode.left = newNode;
+            break;
+          } else {
+            currentNode = currentNode.left;
+          }
+        } else {
+          // go right
+          if (!currentNode.right) {
+            currentNode.right = newNode;
+            break;
+          } else {
+            currentNode = currentNode.right;
+          }
+        }
       }
     }
-    console.log(targetNode);
-    return targetNode;
+    return this;
   }
 
   lookup(value) {
-    //Code here
+    if (!this.root) {
+      return false;
+    }
+
+    let currentNode = this.root;
+    while (true) {
+      if (value == currentNode.value) {
+        return true;
+      } else if (value < currentNode.value) {
+        // go left
+        if (!currentNode.left) {
+          return false;
+        }
+        currentNode = currentNode.left;
+      } else {
+        // go right
+        if (!currentNode.right) {
+          return false;
+        }
+        currentNode = currentNode.right;
+      }
+    }
   }
   // remove
 }
-
-const tree = new BinarySearchTree();
-tree.insert(9);
-tree.insert(4);
-tree.insert(6);
-tree.insert(20);
-// tree.insert(170);
-// tree.insert(15);
-// tree.insert(1);
-const result = JSON.stringify(traverse(tree.root));
-console.log(result);
 
 //     9
 //  4     20
@@ -73,3 +77,17 @@ function traverse(node) {
   tree.right = node.right === null ? null : traverse(node.right);
   return tree;
 }
+
+const tree = new BinarySearchTree();
+console.log(tree.insert(9));
+tree.insert(4);
+tree.insert(6);
+tree.insert(20);
+tree.insert(170);
+tree.insert(15);
+tree.insert(1);
+const result = JSON.stringify(traverse(tree.root));
+console.log(result);
+
+console.log(tree.lookup(10));
+console.log(tree.lookup(20));
