@@ -3,9 +3,9 @@ function addTo80(n) {
   return n + 80;
 }
 
-function memorizedAddTo80(n) {
+function memorizedAddTo80() {
   let cache = {};
-  function inner(n) {
+  return function (n) {
     if (n in cache) {
       return cache[n];
     } else {
@@ -13,14 +13,17 @@ function memorizedAddTo80(n) {
       cache[n] = result;
       return result;
     }
-  }
-
-  return inner(n);
+  };
 }
 
-const test1 = memorizedAddTo80(5); // only the first time has real calculation
-const test2 = memorizedAddTo80(5);
-const test3 = memorizedAddTo80(5);
+const memorized = memorizedAddTo80();
+const test1 = memorized(5);
+const test2 = memorized(5);
+const test3 = memorized(6);
+
+// const test1 = memorizedAddTo80(5)(); // only the first time has real calculation
+// const test2 = memorizedAddTo80(5);
+// const test3 = memorizedAddTo80(5);
 
 console.log(test1);
 console.log(test2);
