@@ -3,16 +3,19 @@ function addTo80(n) {
   return n + 80;
 }
 
-let cache = {};
-
 function memorizedAddTo80(n) {
-  if (n in cache) {
-    return cache[n];
-  } else {
-    const result = addTo80(n);
-    cache[n] = result;
-    return result;
+  let cache = {};
+  function inner(n) {
+    if (n in cache) {
+      return cache[n];
+    } else {
+      const result = addTo80(n);
+      cache[n] = result;
+      return result;
+    }
   }
+
+  return inner(n);
 }
 
 const test1 = memorizedAddTo80(5); // only the first time has real calculation
