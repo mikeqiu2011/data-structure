@@ -28,6 +28,28 @@ function fibonacciMaster(n) {
   //   return fibonacciMaster(n - 1) + fibonacciMaster(n - 2);
 }
 
-const result = fibonacciMaster(10);
+// const result = fibonacciMaster(10);
+// console.log(result);
+// console.log(counter2); // 19!!
+
+let counter3 = 0;
+function fibonacciTutor() {
+  const cache = {};
+  return function fib(n) {
+    counter3++;
+    if (n < 2) {
+      return n;
+    }
+    if (n in cache) {
+      return cache[n];
+    } else {
+      cache[n] = fib(n - 1) + fib(n - 2);
+      return cache[n];
+    }
+  };
+}
+
+const fasterFib = fibonacciTutor();
+const result = fasterFib(50);
 console.log(result);
-console.log(counter2); // 19!!
+console.log(counter3);
