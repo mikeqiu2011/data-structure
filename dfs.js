@@ -131,11 +131,11 @@ class BinarySearchTree {
   breathFirstSearch() {
     const list = [];
     let currentNode;
-    let queue = [];
+    let queue = []; // if we have a very wide tree, the queue can get large
     queue.push(this.root);
 
     while (queue.length > 0) {
-      currentNode = queue.shift();
+      currentNode = queue.shift(); // we use list as queue implementation, so need to call shift which like pop in queue
       list.push(currentNode.value);
       if (currentNode.left) {
         queue.push(currentNode.left);
@@ -146,6 +146,15 @@ class BinarySearchTree {
     }
 
     return list;
+  }
+
+  breathFirstSearchRecursive(node = this.root) {
+    if (!node) {
+      return;
+    }
+    console.log(node.value);
+    this.breathFirstSearchRecursive(node.left);
+    this.breathFirstSearchRecursive(node.right);
   }
 }
 
@@ -159,8 +168,10 @@ tree.insert(15);
 tree.insert(1);
 // tree.remove(170);
 
-const bfs = tree.breathFirstSearch();
-console.log(bfs);
+// const bfs = tree.breathFirstSearch();
+// console.log(bfs);
+tree.breathFirstSearchRecursive();
+
 // JSON.stringify(traverse(tree.root));
 
 //     9
