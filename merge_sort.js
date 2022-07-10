@@ -5,7 +5,8 @@ function mergeSort(array) {
     return array;
   }
   // Split Array in into right and left
-  const middle = Math.floor(array.length / 2);
+  const length = array.length;
+  const middle = Math.floor(length / 2);
   let left = array.slice(0, middle);
   let right = array.slice(middle);
 
@@ -24,7 +25,7 @@ function merge(left, right) {
       lIndex++;
     } else {
       result.push(right[rIndex]);
-      lIndex++;
+      rIndex++;
     }
   }
   console.log(left, right);
