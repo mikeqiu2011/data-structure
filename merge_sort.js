@@ -5,9 +5,11 @@ function mergeSort(array) {
     return array;
   }
   // Split Array in into right and left
-  const index = (array.length + 1) / 2;
-  let left = array.slice(0, index);
-  let right = array.slice(index, array.length - 1);
+  const middle = Math.floor(array.length / 2);
+  let left = array.slice(0, middle);
+  let right = array.slice(middle);
+
+  //   console.log(left, right);
 
   return merge(mergeSort(left), mergeSort(right));
 }
@@ -16,8 +18,8 @@ function merge(left, right) {
   const result = [];
   let lIndex = 0;
   let rIndex = 0;
-  while (lIndex < left.length || rIndex < right.index) {
-    if (left[lIndex] <= right[rIndex]) {
+  while (lIndex < left.length && rIndex < right.index) {
+    if (left[lIndex] < right[rIndex]) {
       result.push(left[lIndex]);
       lIndex++;
     } else {
@@ -25,7 +27,9 @@ function merge(left, right) {
       lIndex++;
     }
   }
-  return result;
+  console.log(left, right);
+
+  return result.concat(left.slice(lIndex)).concat(right.slice(rIndex));
 }
 
 const answer = mergeSort(numbers);
