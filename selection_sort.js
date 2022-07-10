@@ -3,16 +3,16 @@ const array = [6, 5, 3, 1, 8, 7, 2, 4];
 function selectionSort(array) {
   const length = array.length;
   for (let i = 0; i < length; i++) {
-    let smallestIndex;
-    for (let j = i; j < length; j++) {
-      smallestIndex = j;
-      if (array[j] > array[j + 1]) {
-        smallestIndex = j + 1;
+    // set current index as minimum
+    let minIndex = i;
+    let temp = array[i];
+    for (let j = i + 1; j < length; j++) {
+      if (array[minIndex] > array[j]) {
+        minIndex = j;
       }
     }
-    let temp = array[i];
-    array[i] = array[smallestIndex];
-    array[smallestIndex] = temp;
+    array[i] = array[minIndex];
+    array[minIndex] = temp;
   }
   return array;
 }
