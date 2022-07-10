@@ -162,6 +162,19 @@ class BinarySearchTree {
     }
     return this.breathFirstSearchRecursive(queue, list);
   }
+
+  depthFirstSearchRecursiveInOrder(list, node) {
+    if (!node) {
+      return list;
+    }
+    if (node.left) {
+      this.depthFirstSearchRecursiveInOrder(list, node.left);
+    }
+    list.push(node.value);
+    if (node.right) {
+      this.depthFirstSearchRecursiveInOrder(list, node.right);
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -176,8 +189,12 @@ tree.insert(1);
 
 // const bfs = tree.breathFirstSearch();
 // console.log(bfs);
+// const list = [];
+// tree.breathFirstSearchRecursive([tree.root], list);
+// console.log(list);
+
 const list = [];
-tree.breathFirstSearchRecursive([tree.root], list);
+tree.depthFirstSearchRecursiveInOrder(list, tree.root);
 console.log(list);
 
 // JSON.stringify(traverse(tree.root));
