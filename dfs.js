@@ -164,6 +164,7 @@ class BinarySearchTree {
   }
 
   depthFirstSearchRecursiveInOrder(list, node) {
+    console.log(node.value);
     if (!node) {
       return list;
     }
@@ -208,7 +209,7 @@ tree.insert(1);
 // console.log(list);
 
 const list = [];
-tree.depthFirstSearchRecursivePreOrder(list, tree.root);
+tree.depthFirstSearchRecursiveInOrder(list, tree.root);
 console.log(list);
 
 // JSON.stringify(traverse(tree.root));
