@@ -175,6 +175,20 @@ class BinarySearchTree {
       this.depthFirstSearchRecursiveInOrder(list, node.right);
     }
   }
+
+  depthFirstSearchRecursivePreOrder(list, node) {
+    if (!node) {
+      return list;
+    }
+
+    list.push(node.value);
+    if (node.left) {
+      this.depthFirstSearchRecursivePreOrder(list, node.left);
+    }
+    if (node.right) {
+      this.depthFirstSearchRecursivePreOrder(list, node.right);
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -194,7 +208,7 @@ tree.insert(1);
 // console.log(list);
 
 const list = [];
-tree.depthFirstSearchRecursiveInOrder(list, tree.root);
+tree.depthFirstSearchRecursivePreOrder(list, tree.root);
 console.log(list);
 
 // JSON.stringify(traverse(tree.root));
