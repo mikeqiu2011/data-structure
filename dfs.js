@@ -134,15 +134,13 @@ class BinarySearchTree {
     let queue = [];
     queue.push(this.root);
 
-    while (queue.length !== 0) {
-      currentNode = queue.pop();
+    while (queue.length > 0) {
+      currentNode = queue.shift();
       list.push(currentNode.value);
       if (currentNode.left) {
-        // list.push(currentNode.left.value);
         queue.push(currentNode.left);
       }
       if (currentNode.right) {
-        // list.push(currentNode.right.value);
         queue.push(currentNode.right);
       }
     }
@@ -159,7 +157,7 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-tree.remove(170);
+// tree.remove(170);
 
 const bfs = tree.breathFirstSearch();
 console.log(bfs);
