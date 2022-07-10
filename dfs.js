@@ -148,13 +148,19 @@ class BinarySearchTree {
     return list;
   }
 
-  breathFirstSearchRecursive(node = this.root) {
-    if (!node) {
-      return;
+  breathFirstSearchRecursive(queue, list) {
+    if (queue.length === 0) {
+      return list;
     }
-    console.log(node.value);
-    this.breathFirstSearchRecursive(node.left);
-    this.breathFirstSearchRecursive(node.right);
+    let currentNode = queue.shift();
+    list.push(currentNode.value);
+    if (currentNode.left) {
+      queue.push(currentNode.left);
+    }
+    if (currentNode.right) {
+      queue.push(currentNode.right);
+    }
+    return this.breathFirstSearchRecursive(queue, list);
   }
 }
 
@@ -170,7 +176,9 @@ tree.insert(1);
 
 // const bfs = tree.breathFirstSearch();
 // console.log(bfs);
-tree.breathFirstSearchRecursive();
+const list = [];
+tree.breathFirstSearchRecursive([tree.root], list);
+console.log(list);
 
 // JSON.stringify(traverse(tree.root));
 
