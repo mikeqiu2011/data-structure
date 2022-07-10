@@ -5,7 +5,7 @@ function addTo80(n) {
 
 function memorizedAddTo80() {
   let cache = {};
-  return function (n) {
+  return (n) => {
     if (n in cache) {
       return cache[n];
     } else {
@@ -16,7 +16,7 @@ function memorizedAddTo80() {
   };
 }
 
-const memorized = memorizedAddTo80();
+const memorized = memorizedAddTo80(); // must instantiate first
 const test1 = memorized(5);
 const test2 = memorized(5);
 const test3 = memorized(6);
