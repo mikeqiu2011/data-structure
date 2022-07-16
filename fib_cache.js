@@ -34,6 +34,7 @@ function fibonacciMaster(n) {
 
 let counter3 = 0;
 function fibonacciTutor() {
+  // time complexity is O(n), space complexity is also O(n)
   const cache = {};
   return function fib(n) {
     counter3++;
